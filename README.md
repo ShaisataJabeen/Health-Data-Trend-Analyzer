@@ -1,78 +1,139 @@
 # Health Data Trend Analyzer
 
-#### Video Demo
-https://drive.google.com/file/d/1g_nbpHGdqSaisubhiVe3iBt8H38sW6YR/view?usp=sharing
+## Overview
 
-#### Description
-Health Data Trend Analyzer is a Python project developed for CS50's Introduction to Programming with Python final project. It analyzes historical cancer death-rate data for Pakistan, calculates summary statistics, identifies changes over time, and provides a simple overview of the observed trend.
+Health Data Trend Analyzer is a Python-based data analysis project that explores historical cancer death-rate estimates in Pakistan from 2000 to 2021.
 
-The project demonstrates how Python can be used to load data from a CSV file, organize numerical information, perform calculations, and communicate results in a readable format. It is designed to be beginner-friendly while demonstrating practical programming and data analysis skills.
+The project processes a CSV dataset, calculates descriptive statistics, identifies changes in cancer death rates over time, and provides a simple estimate for the following year based on historical trends.
 
-#### Project Files
+It demonstrates the use of Python for data processing, numerical calculations, trend analysis, automated testing, and presenting analytical results in a structured and understandable way.
 
-- `project.py`: Contains the main program, loads the CSV dataset, calculates summary statistics, identifies the highest and lowest death rates, calculates percentage change, and summarizes the overall trend.
-- `test_project.py`: Contains automated tests written with `pytest` to check that the analysis functions return the expected results.
-- `data/death-rate-from-cancer.csv`: Contains the historical cancer death-rate data used by the program.
+Originally developed as a final project for CS50's Introduction to Programming with Python, this project provided an opportunity to apply programming concepts to a real-world health dataset.
 
-#### Design Choices
+## Key Features
 
-I separated the program into functions so that each function has a clear responsibility. The `load_data()` function reads the CSV file and extracts the years and death rates for Pakistan. The `calculate_average()` function calculates the average rate, while `find_highest_rate()` and `find_lowest_rate()` identify the maximum and minimum values. The `calculate_percentage_change()` function calculates the percentage change between two rates.
+- **Data Processing:** Loads and extracts historical cancer death-rate data for Pakistan from a CSV file.
+- **Statistical Analysis:** Calculates the average death rate and identifies the highest and lowest recorded values.
+- **Trend Analysis:** Measures the overall percentage change in death rates between the first and last recorded years.
+- **Simple Forecasting:** Estimates the following year's death rate using the average annual change across the available period.
+- **Automated Testing:** Uses pytest to test individual analysis functions and verify their expected results.
 
-I also implemented a simple one-year forecast using the average annual change between the first and last recorded death rates. The program adds this change to the last recorded rate to estimate the rate for the following year. Separating this calculation into the `calculate_forecast()` function makes it easier to test independently.
+## Technologies Used
 
-The `main()` function coordinates these operations and displays the results. Keeping the calculations in separate functions makes the code easier to read, test, and maintain.
+- Python 3
+- CSV data processing
+- pytest for automated testing
 
-I also created automated tests to verify the behavior of the analysis functions using sample values. This helps detect calculation errors without needing to run the entire analysis manually.
+## Project Structure
 
-#### How to Run the Project
+```text
+Health-Data-Trend-Analyzer/
+│
+├── data/
+│   └── death-rate-from-cancer.csv
+│
+├── project.py
+├── test_project.py
+└── README.md
+```
 
-1. Make sure Python 3 is installed.
-2. Open a terminal in the project directory.
-3. Run the program using:
+## Getting Started
+
+### Prerequisites
+
+- Python 3 installed on your system.
+- pytest for running automated tests.
+
+### Running the Project
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ShaisataJabeen/Health-Data-Trend-Analyzer.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd Health-Data-Trend-Analyzer
+   ```
+
+3. Run the program:
 
    ```bash
    python project.py
    ```
 
-The program reads the historical cancer death-rate data from the CSV file, calculates summary statistics, and displays the results in the terminal.
+The program loads the dataset, performs the analysis, and displays the calculated results in the terminal.
 
-#### Running the Tests
+### Running the Tests
 
-To run the automated tests, install `pytest` if it is not already installed:
+Install pytest if it is not already installed:
 
 ```bash
 pip install pytest
 ```
 
-Then execute:
+Run the automated tests:
 
 ```bash
 pytest test_project.py
 ```
 
-The tests check whether the analysis functions produce the expected results for sample inputs.
+## Example Results
 
-#### Data Source and Interpretation
+The analysis of Pakistan's cancer death-rate estimates from 2000 to 2021 produces the following results:
 
-The dataset used in this project is `death-rate-from-cancer.csv`, obtained from Our World in Data. The underlying data comes from the World Health Organization's Global Health Estimates.
+| Metric | Result |
+|---|---:|
+| Average death rate | 52.86 per 100,000 people |
+| Highest death rate | 54.95 (2019) |
+| Lowest death rate | 49.61 (2021) |
+| Overall change | -2.12 |
+| Percentage change | -4.1% |
+| Estimated rate for 2022 | 49.51 per 100,000 people |
 
-The dataset contains estimated cancer death rates for both sexes combined, expressed as deaths per 100,000 people. This project analyzes Pakistan's data from 2000 to 2021.
+The results indicate an overall decrease in the estimated cancer death rate over the analyzed period.
 
-The results are descriptive statistics based on the available estimates. They show how the recorded estimates changed over time, but they do not explain why those changes occurred. The estimates should be interpreted cautiously because WHO notes limitations in the quality of cause-of-death registration data for Pakistan.
+The 2022 estimate is a simple projection based on the average annual change between the first and last observations. It should not be interpreted as an official forecast.
 
+## Data Source
 
-#### Example Results
+The dataset, `death-rate-from-cancer.csv`, was obtained from **Our World in Data**, with underlying estimates from the **World Health Organization (WHO) Global Health Estimates**.
 
-When the program analyzes Pakistan's cancer death-rate data from 2000 to 2021, it produces the following results:
+The data represents estimated cancer death rates for both sexes combined, expressed as deaths per 100,000 people.
 
-- **Average death rate:** 52.86 deaths per 100,000 people.
-- **Highest death rate:** 54.95 in 2019.
-- **Lowest death rate:** 49.61 in 2021.
-- **Overall change:** The death rate decreased by 2.12 between 2000 and 2021, representing a decrease of approximately 4.1%.
-- **One-year forecast:** The estimated rate for 2022 is 49.51 deaths per 100,000 people.
+This project focuses on Pakistan's estimates from 2000 to 2021.
 
-These results summarize the historical data and demonstrate how Python can be used to analyze trends and make a simple projection. The forecast is an estimate based on the historical average annual change, not an official prediction.
+## Methodology and Design Decisions
 
-#### Limitations
+The program is organised into separate functions, each responsible for a specific part of the analysis.
 
-This project analyzes historical data only through 2021, so its results should not be interpreted as current cancer statistics. Changes in estimated death rates do not, by themselves, establish the causes of those changes. The one-year forecast is a simple linear projection based on the average annual change between the first and last observations. It is not an official forecast and may not reflect future outcomes.
+- `load_data()`: Reads the CSV dataset and extracts the relevant years and death rates for Pakistan.
+- `calculate_average()`: Calculates the average death rate.
+- `find_highest_rate()`: Identifies the highest recorded death rate and its corresponding year.
+- `find_lowest_rate()`: Identifies the lowest recorded death rate and its corresponding year.
+- `calculate_percentage_change()`: Calculates the percentage change between two recorded rates.
+- `calculate_forecast()`: Estimates the following year's rate using the average annual change between the first and last observations.
+- `main()`: Coordinates the analysis functions and displays the results.
+
+Separating the calculations into individual functions makes the program easier to understand, maintain, and test. Automated tests are included to check the behaviour of the analysis functions using sample values.
+
+## Limitations
+
+This project is based on historical estimates available through 2021 and does not represent current cancer statistics.
+
+The observed changes do not establish the causes behind variations in cancer death rates. Additionally, the dataset contains estimated values, and the quality of cause-of-death registration data can affect their reliability.
+
+The forecasting method uses a simple linear projection based on the average annual change between the first and last observations. It does not account for other factors that may influence future cancer death rates and should not be treated as a reliable medical or public health prediction.
+
+## Learning Outcomes
+
+Through this project, I applied Python programming concepts to a real-world dataset and gained practical experience in:
+
+- Reading and processing structured CSV data.
+- Organising code using functions and modular programming.
+- Performing statistical calculations and analysing historical trends.
+- Implementing a basic forecasting method.
+- Writing automated tests with pytest.
+- Interpreting numerical results while considering data limitations.
